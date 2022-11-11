@@ -2,7 +2,7 @@ package com.andjemison.scheduland;
 
 import org.springframework.web.client.RestTemplate;
 
-public class DogAPI implements IDog {
+public class DogImageRetriever implements IDog {
     @Override
     public String getDogImageUrl() {
         String uri = "https://dog.ceo/api/breeds/image/random";
