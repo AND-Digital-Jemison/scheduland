@@ -12,20 +12,13 @@ public class DogController {
         this.dog = dog;
     }
 
-    //    @Autowired
-//    private RestTemplate restTemplate;
-
     @GetMapping("/hello")
     public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
         return String.format("Hello %s!", name);
     }
 
     @GetMapping("/dog")
-    public String getDog() {
-//        String uri = "https://dog.ceo/api/breeds/image/random";
-//		RestTemplate restTemplate = new RestTemplate();
-//        DogResponse result = restTemplate.getForObject(uri, DogResponse.class);
-//        DogAPI dogAPI = new DogAPI();
+    public boolean getDog() {
         return this.dog.getDogImageUrl();
     }
 
