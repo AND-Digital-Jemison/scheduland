@@ -15,6 +15,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -25,14 +26,20 @@ public class DogControllerTests {
     private MockMvc mvc;
 
     @Test
-    public void getHello() throws Exception {
+    public void checkDogStatusIsOk() throws Exception {
         mvc.perform(MockMvcRequestBuilders.get("/dog").accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk()).andExpect(content().string(containsString("http")));
+                .andExpect(status().isOk());
     }
-
     @Test
     public void getDogInFirstHalfOfAlphabet() throws Exception {
-        DogController dogController = new DogController(new TestDogImageRetriever("afghan"));
+        DogController dogController = new DogController(new TestDogImageRetriever("https://images.dog.ceo/breeds/bulldog-boston/n02096585_8323.jpg"));
         assert(dogController.getDog());
     }
+    @Test
+    public void checkDogIsNotInFirstHalfOfAlphabet() throws Exception{
+        DogController dogController = new DogController(new TestDogImageRetriever("https://images.dog.ceo/breeds/poodle/n02096585_8323.jpg"));
+        assertFalse(dogController.getDog());
+    }
+
+
 }

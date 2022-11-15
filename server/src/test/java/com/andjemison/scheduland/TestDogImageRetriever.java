@@ -2,14 +2,14 @@ package com.andjemison.scheduland;
 
 public class TestDogImageRetriever implements IDogImageRetriever {
 
-    private final String breed;
+    private final String url;
 
-    public TestDogImageRetriever(String breed) {
-        this.breed = breed;
+    public TestDogImageRetriever(String url) {
+        this.url = url;
     }
 
     @Override
     public String getDogImageUrl() {
-        return this.breed;
+        return this.url;
     }
 }
