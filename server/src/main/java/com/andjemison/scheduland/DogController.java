@@ -1,15 +1,18 @@
 package com.andjemison.scheduland;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 
 @RestController
 public class DogController {
+    private final IDogImageRetriever dog;
 
-//    @Autowired
+    public DogController(IDogImageRetriever dog) {
+        this.dog = dog;
+    }
+
+    //    @Autowired
 //    private RestTemplate restTemplate;
 
     @GetMapping("/hello")
@@ -18,12 +21,12 @@ public class DogController {
     }
 
     @GetMapping("/dog")
-    public String getDog(IDog dog) {
+    public String getDog() {
 //        String uri = "https://dog.ceo/api/breeds/image/random";
 //		RestTemplate restTemplate = new RestTemplate();
 //        DogResponse result = restTemplate.getForObject(uri, DogResponse.class);
 //        DogAPI dogAPI = new DogAPI();
-        return dog.getDogImageUrl();
+        return this.dog.getDogImageUrl();
     }
 
 }

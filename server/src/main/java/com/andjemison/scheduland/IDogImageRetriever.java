@@ -1,5 +1,5 @@
 package com.andjemison.scheduland;
 
-interface IDog {
+interface IDogImageRetriever {
     String getDogImageUrl();
 }

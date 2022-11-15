@@ -1,8 +1,10 @@
 package com.andjemison.scheduland;
 
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-public class DogImageRetriever implements IDog {
+@Service
+public class DogImageRetrieverServiceImageRetriever implements IDogImageRetriever {
     @Override
     public String getDogImageUrl() {
         String uri = "https://dog.ceo/api/breeds/image/random";
