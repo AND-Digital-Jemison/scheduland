@@ -13,3 +13,4 @@ public class DogImageRetrieverServiceImageRetriever implements IDogImageRetrieve
         return result.getMessage();
     }
 }
+
