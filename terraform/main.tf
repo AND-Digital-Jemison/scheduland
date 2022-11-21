@@ -3,6 +3,10 @@ resource "aws_elastic_beanstalk_application" "schedulandtf" {
   description = "Scheduling App"
 }
 
+resource "aws_s3_bucket" "scheduland_code" {
+  value = '/../build'
+}
+
 resource "aws_elastic_beanstalk_environment" "schedulandtfenv" {
   name                = "schedulandtf"
   application         = aws_elastic_beanstalk_application.schedulandtf.name
