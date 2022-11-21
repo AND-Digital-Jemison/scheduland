@@ -3,6 +3,13 @@ resource "aws_elastic_beanstalk_application" "schedulandtf" {
   description = "Scheduling App"
 }
 
+resource "aws_elastic_beanstalk_application_version" "schedulandtf_version"{
+  application = aws_elastic_beanstalk_application.schedulandtf.name
+  bucket = aws_s3_bucket.scheduland_code_bucket.id
+  key = aws_s3_bucket_object.scheduland_code_bucket_object.id
+  name = "scheduland-1.0.0"
+}
+
 resource "aws_s3_bucket" "scheduland_code_bucket" {
   bucket = "scheduland-prod"
   acl = "private"
@@ -12,7 +19,7 @@ resource "aws_s3_bucket" "scheduland_code_bucket" {
 resource "aws_s3_bucket_object" "scheduland_code_bucket_object" {
   bucket = aws_s3_bucket.scheduland_code_bucket.id
   key = "beanstalk/scheduland"
-  source = "target/scheduland-1.0.0.jar"
+  source = "../server/build/libs/scheduland-0.0.1-SNAPSHOT.jar"
 }
 
 
