@@ -15,6 +15,6 @@ jobs:
       - name: Build with Gradle
         run: cd server && gradle build
       - name: terraform init
-        run: cd terraform && terraform init -input=false
+        run: cd terraform && terraform init -input=false -backend-config="s3=scheduland-prod"
       - name: terraform apply
         run: cd terraform && terraform apply -input=false -auto-approve
