@@ -12,9 +12,9 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 17.0.5
-      - name: Build with Gradle
-        run: cd server && gradle build
+      # - name: Build with Gradle
+      #   run: cd server && gradle build
       - name: terraform init
-        run: cd terraform && terraform init -input=false
+        run: cd terraform && terraform init -input=false -backend-config="bucket=scheduland-prod" -backend-config="region=eu-west-2" -backend-config="key=test"
       - name: terraform apply
         run: cd terraform && terraform apply -input=false -auto-approve
