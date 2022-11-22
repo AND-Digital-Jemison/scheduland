@@ -14,3 +14,5 @@ jobs:
           java-version: 17.0.5
       - name: Build with Gradle
         run: cd server && gradle build
+      - name: terraform apply
+        run: cd terraform && terraform apply -input=false -auto-approve
