@@ -40,10 +40,5 @@ public class DogControllerTests {
         DogController dogController = new DogController(new TestDogImageRetriever("https://images.dog.ceo/breeds/poodle/n02096585_8323.jpg"));
         assertFalse(dogController.getDog());
     }
-    @Test
-    public void iWillFail() throws Exception{
-        assertFalse(true);
-    }
-
 
 }

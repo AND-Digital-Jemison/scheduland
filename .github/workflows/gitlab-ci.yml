@@ -14,7 +14,3 @@ jobs:
           java-version: 17.0.5
       - name: Build with Gradle
         run: cd server && gradle build
-      - name: Test with Gradle
-        run: cd server && gradle test
-      - name: Test specific file
-        run: cd server && gradle test --tests com.andjemison.scheduland.DogControllerTests
