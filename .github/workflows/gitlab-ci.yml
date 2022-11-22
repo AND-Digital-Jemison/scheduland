@@ -8,4 +8,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Run tests
-        run: cd ../../server && gradle test
+        run: pwd && echo(${GITHUB_WORKSPACE})
