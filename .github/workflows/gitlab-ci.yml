@@ -14,6 +14,8 @@ jobs:
           java-version: 17.0.5
       - name: Where am I
         run: ls && cd .. && ls && cd .. && ls && cd .. && ls && cd .. && ls
+      - name: server folder
+        run: cd **/server && ls
       - name: Build with Gradle
         run: gradle build --file **/gradle-wrapper.jar
       - name: Test with Gradle
