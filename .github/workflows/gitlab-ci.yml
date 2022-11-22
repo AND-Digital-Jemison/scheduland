@@ -17,4 +17,4 @@ jobs:
       - name: Test with Gradle
         run: cd server && gradle test
       - name: Test specific file
-        run: cd server && gradle test --tests com.scheduland.DogControllerTests
+        run: cd server && gradle test --tests com.andjemison.scheduland.DogControllerTests
