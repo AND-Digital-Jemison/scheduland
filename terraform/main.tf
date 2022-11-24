@@ -13,7 +13,6 @@ resource "aws_elastic_beanstalk_application_version" "schedulandtf_version"{
 resource "aws_s3_bucket" "scheduland_code_bucket" {
   bucket = "scheduland-prod"
   acl = "private"
-
 }
 
 resource "aws_s3_bucket_object" "scheduland_code_bucket_object" {

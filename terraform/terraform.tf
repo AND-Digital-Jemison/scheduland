@@ -1,7 +1,7 @@
 terraform {
   backend "s3" {
-     bucket = "scheduland-prod"
-     key    = "scheduland"
+     bucket = "scheduland"
+     key    = "state.tf"
      region = "eu-west-2"
   }
   # required_providers {
