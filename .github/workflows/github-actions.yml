@@ -1,0 +1,37 @@
+name: Deploy to S3 and invalidate CloudFront distribution
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 17.0.5
+        uses: actions/setup-java@v1
+        with:
+          java-version: 17.0.5
+      # - name: Build with Gradle
+      #   run: cd server && gradle build
+      - name: terraform init
+        run: cd terraform && terraform init -input=false
+# bucket=scheduland-prod
+# - name: terraform apply
+#   run: cd terraform && terraform apply -input=false -auto-approve
+# - name: Terraform Init
+#       uses: hashicorp/terraform-github-actions/init@v0.4.0
+
+# - name: Terraform Validate
+#       uses: hashicorp/terraform-github-actions/validate@v0.3.7
+
+#     - name: Terraform Apply
+#       uses: hashicorp/terraform-github-actions/apply@v0.4.0
+
+# when is it done (on push?)
+# use secrets manager and kms once on gitlab
+
