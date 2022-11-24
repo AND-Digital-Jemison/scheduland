@@ -41,5 +41,4 @@ public class DogControllerTests {
         assertFalse(dogController.getDog());
     }
 
-
 }

@@ -27,7 +27,20 @@ resource "aws_elastic_beanstalk_environment" "schedulandtfenv" {
   name                = "schedulandtf"
   application         = aws_elastic_beanstalk_application.schedulandtf.name
   solution_stack_name = "64bit Amazon Linux 2 v3.4.1 running Corretto 17"
-  
+  version_label = aws_elastic_beanstalk_application_version.schedulandtf_version.name
+
+  setting {
+    name = "SERVER_PORT"
+    namespace = "aws:elasticbeanstalk:application:environment"
+    value = "5000"
+  }
+
+  setting {
+    namespace = "aws:ec2:instances"
+    name = "InstanceTypes"
+    value = "t2.micro"
+  }
+
   setting {
     namespace = "aws:autoscaling:launchconfiguration"
     name      = "IamInstanceProfile"
