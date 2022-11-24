@@ -1,6 +1,6 @@
 terraform {
   backend "s3" {
-     bucket = "scheduland-tf"
+     bucket = "scheduland"
      key    = "state.tf"
      region = "eu-west-2"
   }
