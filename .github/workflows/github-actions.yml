@@ -6,9 +6,7 @@ on:
 
 jobs:
   build:
-    env:
-      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -19,7 +17,12 @@ jobs:
       # - name: Build with Gradle
       #   run: cd server && gradle build
       - name: terraform init
-        run: cd terraform && terraform init -input=false
+        # run: cd terraform && terraform init -input=false
+        uses: hashicorp/terraform-github-actions/init@v0.4.0
+        env:
+          TF_ACTION_WORKING_DIR: 'terraform'
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 # bucket=scheduland-prod
 # - name: terraform apply
 #   run: cd terraform && terraform apply -input=false -auto-approve
@@ -35,3 +38,9 @@ jobs:
 # when is it done (on push?)
 # use secrets manager and kms once on gitlab
 
+terraform init -backend-config="bucket=${{ secrets.STATE_BUCKET_NAME }}" \
+  -backend-config="key=${{ secrets.STATE_KEY }}" \
+  -backend-config="region=${{ secrets.AWS_REGION }}" \
+  -backend-config="access_key=${{ secrets.AWS_ACCESS_KEY_ID }}" \
+  -backend-config="secret_key=${{ secrets.AWS_SECRET_ACCESS_KEY }}" \
+  -input=false -no-color
