@@ -22,9 +22,14 @@ jobs:
           TF_ACTION_WORKING_DIR: "terraform"
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-# bucket=scheduland-prod
-# - name: terraform apply
-#   run: cd terraform && terraform apply -input=false -auto-approve
+      - name: Terraform Validate
+        uses: hashicorp/terraform-github-actions/validate@v0.3.7
+      - name: terraform apply
+        uses: hashicorp/terraform-github-actions/apply@v0.4.0
+        env:
+          TF_ACTION_WORKING_DIR: "terraform"
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 # - name: Terraform Init
 #       uses: hashicorp/terraform-github-actions/init@v0.4.0
 
