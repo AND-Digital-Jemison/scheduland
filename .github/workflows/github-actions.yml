@@ -3,11 +3,13 @@ on:
   push:
     branches:
       - main
-
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.1.7
       - uses: actions/checkout@v2
       - name: Set up JDK 17.0.5
         uses: actions/setup-java@v1
@@ -15,22 +17,22 @@ jobs:
           java-version: 17.0.5
       - name: Build with Gradle
         run: cd server && gradle build
-      - name: terraform init
-        uses: hashicorp/setup-terraform@v2
-        with:
-          terraform_version: 1.1.9
+
+      - name: Terraform Init
+        id: init
+        run: cd terraform && terraform init
         env:
           TF_ACTION_WORKING_DIR: "terraform"
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       - name: Terraform Validate
-        uses: hashicorp/setup-terraform@v2
-        with:
-          terraform_version: 1.1.9
-      - name: terraform apply
-        uses: hashicorp/setup-terraform@v2
-        with:
-          terraform_version: 1.1.9
+        id: validate
+        run: cd terraform && terraform validate -no-color
+
+      - name: Terraform Plan
+        id: plan
+        run: cd terraform && terraform plan -no-color
+        continue-on-error: true
         env:
           TF_ACTION_WORKING_DIR: "terraform"
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
