@@ -13,10 +13,9 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 17.0.5
-      # - name: Build with Gradle
-      #   run: cd server && gradle build
+      - name: Build with Gradle
+        run: cd server && gradle build
       - name: terraform init
-        # run: cd terraform && terraform init -input=false
         uses: hashicorp/terraform-github-actions/init@v0.4.0
         env:
           TF_ACTION_WORKING_DIR: "terraform"
@@ -30,15 +29,6 @@ jobs:
           TF_ACTION_WORKING_DIR: "terraform"
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-# - name: Terraform Init
-#       uses: hashicorp/terraform-github-actions/init@v0.4.0
-
-# - name: Terraform Validate
-#       uses: hashicorp/terraform-github-actions/validate@v0.3.7
-
-#     - name: Terraform Apply
-#       uses: hashicorp/terraform-github-actions/apply@v0.4.0
-
 # when is it done (on push?)
 # use secrets manager and kms once on gitlab
 
