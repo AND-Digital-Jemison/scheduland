@@ -28,10 +28,12 @@ jobs:
       - name: Terraform Validate
         id: validate
         run: cd terraform && terraform validate -no-color
-
+      - name: Terraform Plan
+        id: validate
+        run: cd terraform && terraform plan -out=tfplan -input=false
       - name: Terraform Apply
         id: apply
-        run: cd terraform && terraform apply -no-color -input=false
+        run: cd terraform && terraform apply -input=false tfplan
         continue-on-error: true
         env:
           TF_ACTION_WORKING_DIR: "terraform"
