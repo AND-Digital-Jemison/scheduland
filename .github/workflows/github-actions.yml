@@ -31,7 +31,7 @@ jobs:
 
       - name: Terraform Apply
         id: apply
-        run: cd terraform && terraform apply -no-color
+        run: cd terraform && terraform apply -no-color -input=false
         continue-on-error: true
         env:
           TF_ACTION_WORKING_DIR: "terraform"
