@@ -13,7 +13,7 @@ resource "aws_elastic_beanstalk_application_version" "scheduland-app-version"{
 resource "aws_s3_bucket" "scheduland-code-bucket" {
   bucket = "scheduland-prod"
   acl = "private"
-  force_destroy= "true"
+  # force_destroy = "true"
 }
 
 resource "aws_s3_bucket_object" "scheduland-code-bucket-object" {
