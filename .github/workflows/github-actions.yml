@@ -27,7 +27,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       - name: Terraform Validate
         id: validate
-        run: echo ${{ secrets.AWS_ACCESS_KEY_ID }} && ${{ secrets.AWS_SECRET_ACCESS_KEY }} && echo cd terraform && terraform validate -no-color
+        run: cd terraform && terraform validate -no-color
       - name: Terraform Plan
         id: plan
         run: cd terraform && terraform plan -out=tfplan -input=false
