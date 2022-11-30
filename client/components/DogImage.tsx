@@ -2,7 +2,11 @@ import React from "react";
 import { useQuery } from "@tanstack/react-query";
 
 const getDogData = async () => {
-  return await (await fetch(`http://localhost:8080/dog/`)).json();
+  return await (
+    await fetch(
+      `http://scheduland-app-env.eba-mynxvqr3.eu-west-2.elasticbeanstalk.com/dog/`
+    )
+  ).json();
 };
 
 export default function DogImage() {
